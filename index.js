@@ -44,7 +44,10 @@ module.exports = function(options) {
             alias = path.join(alias, 'index.html');
           }
 
-          files[alias] = redirectPage;
+          // Don't overwrite if already exists
+          if (!(alias in files)) {
+            files[alias] = redirectPage;
+          }
         });
       }
     }
