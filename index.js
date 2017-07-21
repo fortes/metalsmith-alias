@@ -22,7 +22,7 @@ module.exports = function(options) {
     for (file in files) {
       if (files[file].alias) {
         redirectPage = {
-          contents: new Buffer(createRedirectPage(files[file].path))
+          contents: new Buffer(createRedirectPage(file))
         };
 
         files[file].alias.forEach(function(alias) {
