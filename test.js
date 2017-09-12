@@ -1,23 +1,29 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var plugin = require('./index');
+const alias = require('./index')();
 
-var alias = plugin({});
-
-var files = {
+const files = {
   'about/index.html': {
-    alias: ['foo', 'bar', 'baz']
+    alias: ['foo', 'bar', 'baz'],
   },
   'baz/index.html': {
-    original: true
-  }
+    original: true,
+  },
+  'has/path.html': {
+    path: 'real_path',
+    alias: ['old/path.jpg'],
+  },
 };
 
-alias(files, {}, function(err) {
+alias(files, {}, () => {
   assert('foo/index.html' in files);
   assert('bar/index.html' in files);
 
   assert(files['baz/index.html'].original, 'Page not overwritten by alias');
 
-  console.log('All tests passed.');
+  assert('old/path.jpg' in files, 'extension not appended if present in alias');
+  assert(
+    /real_path/.test(files['old/path.jpg'].contents.toString()),
+    '.path used if present',
+  );
 });
