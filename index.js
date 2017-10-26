@@ -43,6 +43,12 @@ module.exports = function(options) {
 
         if (options.netlify) {
           aliases.push(`/${alias}  /${destination === '/' ? '' : destination}`);
+          // Also generate redirects without `index.html`
+          if (/\/index\.html$/.test(alias)) {
+            const withoutIndex = alias.substr(0, alias.length - '/index.html'.length);
+            aliases.push(`/${withoutIndex}/  /${destination === '/' ? '' : destination}`);
+            aliases.push(`/${withoutIndex}  /${destination === '/' ? '' : destination}`);
+          }
         }
       });
     }

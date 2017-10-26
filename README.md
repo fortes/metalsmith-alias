@@ -28,6 +28,7 @@ Options:
 
 ## Changelog
 
+* `0.1.1`: Generate extra redirects without `index.html`
 * `0.1.0`: Add ability to create `_redirects` file for Netlify.
 * `0.0.3`: Use `path` member if set on the file object.
 
