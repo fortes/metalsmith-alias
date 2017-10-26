@@ -11,8 +11,24 @@ alias:
 - somepage/that/used/to/be/here.html
 ```
 
+## Usage
+
+```js
+const alias = require('metalsmith-alias');
+
+Metalsmith()
+  // Other plugins and configuration
+  .use(alias({netlify: true}))
+  // More plugins and configuration
+```
+
+Options:
+
+* `netlify`: Whether a [Netlify `_redirects`](https://www.netlify.com/docs/redirects/) file should be created (default `false`).
+
 ## Changelog
 
+* `0.1.0`: Add ability to create `_redirects` file for Netlify.
 * `0.0.3`: Use `path` member if set on the file object.
 
 ## Alternatives

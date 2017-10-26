@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-alias",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Metalsmith plugin for generating page URL aliases",
   "main": "index.js",
   "scripts": {
