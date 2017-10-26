@@ -45,19 +45,34 @@ module.exports = function(options) {
           aliases.push(`/${alias}  /${destination === '/' ? '' : destination}`);
           // Also generate redirects without `index.html`
           if (/\/index\.html$/.test(alias)) {
-            const withoutIndex = alias.substr(0, alias.length - '/index.html'.length);
-            aliases.push(`/${withoutIndex}/  /${destination === '/' ? '' : destination}`);
-            aliases.push(`/${withoutIndex}  /${destination === '/' ? '' : destination}`);
+            const withoutIndex = alias.substr(
+              0,
+              alias.length - '/index.html'.length,
+            );
+            aliases.push(
+              `/${withoutIndex}/  /${destination === '/' ? '' : destination}`,
+            );
+            aliases.push(
+              `/${withoutIndex}  /${destination === '/' ? '' : destination}`,
+            );
           }
         }
       });
     }
 
     if (options.netlify) {
-      files[NETLIFY_REDIRECTS_FILE_PATH] = {
-        path: NETLIFY_REDIRECTS_FILE_PATH,
-        contents: new Buffer(aliases.join('\n')),
-      };
+      const contents = new Buffer(aliases.join('\n'));
+      if (NETLIFY_REDIRECTS_FILE_PATH in files) {
+        files[NETLIFY_REDIRECTS_FILE_PATH].contents = Buffer.concat([
+          files[NETLIFY_REDIRECTS_FILE_PATH].contents,
+          contents,
+        ]);
+      } else {
+        files[NETLIFY_REDIRECTS_FILE_PATH] = {
+          path: NETLIFY_REDIRECTS_FILE_PATH,
+          contents,
+        };
+      }
     }
 
     setImmediate(done);
