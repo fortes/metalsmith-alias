@@ -28,6 +28,7 @@ Options:
 
 ## Changelog
 
+* `0.2.0`: Use forced redirects to avoid [shadowing](https://docs.netlify.com/routing/redirects/rewrites-proxies/#shadowing).
 * `0.1.2`: Don't overwrite existing `_redirects`.
 * `0.1.1`: Generate extra redirects without `index.html`.
 * `0.1.0`: Add ability to create `_redirects` file for Netlify.

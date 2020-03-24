@@ -37,23 +37,25 @@ module.exports = function(options) {
             {
               path: alias,
             },
-            redirectPage,
+            redirectPage
           );
         }
 
         if (options.netlify) {
-          aliases.push(`/${alias}  /${destination === '/' ? '' : destination}`);
+          aliases.push(
+            `/${alias}  /${destination === '/' ? '' : destination} 301!`
+          );
           // Also generate redirects without `index.html`
           if (/\/index\.html$/.test(alias)) {
             const withoutIndex = alias.substr(
               0,
-              alias.length - '/index.html'.length,
+              alias.length - '/index.html'.length
             );
             aliases.push(
-              `/${withoutIndex}/  /${destination === '/' ? '' : destination}`,
+              `/${withoutIndex}/  /${destination === '/' ? '' : destination} 301!`
             );
             aliases.push(
-              `/${withoutIndex}  /${destination === '/' ? '' : destination}`,
+              `/${withoutIndex}  /${destination === '/' ? '' : destination} 301!`
             );
           }
         }
