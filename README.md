@@ -1,3 +1,7 @@
+# No longer maintained
+
+This is no longer maintained, code is archived and available for forking though.
+
 # metalsmith-alias [![build status](https://travis-ci.org/fortes/metalsmith-alias.svg?branch=master)](https://travis-ci.org/fortes/metalsmith-alias)
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/fortes/metalsmith-alias.svg)](https://greenkeeper.io/)
